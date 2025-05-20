@@ -1,1 +1,2 @@
 # djangowebshop
+Luodaan verkkokauppa djangolla
