@@ -6,10 +6,10 @@
     <body>
         <h1>Tuotelista</h1>
         <p>Tässä näet listan myytävistä tuotteista</p>
-
+    <hr>
         {% for product in products %}
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.description }}</p>
+            <h2>{{ product.name }}</h2>
+            <p style="border:2px solid rgb(143, 120, 101);">{{ product.description }}</p>
             <p>{{ product.total_price }} ALV {{ product.tax }}%</p>
             <a href="{% url 'product_details' product.id %}">Näytä tuote</a>
         {% endfor %}
