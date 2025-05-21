@@ -1,17 +1,101 @@
 
 <html>
     <head>
-
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+        
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+        
+    /* Style the header */
+    header {
+        background-color: #bda485;
+        padding: 10px;
+        text-align: left;
+        font-size: 35px;
+        color: white;
+    }
+        
+    /* Create two columns/boxes that floats next to each other */
+    nav {
+        float:right;
+        width: 10%;
+        background: #ffffff;
+        padding: 20px;
+    }
+        
+    /* Style the list inside the menu */
+    nav ul {
+        list-style-type: none;
+        border: 1px solid rgb(201, 201, 201);
+        background-color: rgb(236, 236, 236);
+        padding: 16px;
+        text-align: center;
+    }
+        
+    article {
+        float: left;
+        padding: 20px;
+        width: 70%;
+        background-color: #f5e6d6;
+        height: 300px; /* only for demonstration, should be removed */
+    }
+        
+    /* Clear floats after the columns */
+    section::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+        
+    /* Style the footer */
+    footer {
+        background-color: #bea597;
+        padding: 10px;
+        text-align: center;
+        color: white;
+    }
+        
+    /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+    @media (max-width: 600px) {
+        nav, article {
+        width: 100%;
+        height: auto;
+        }
+    }
+    
+    </style>
     </head>
     <body>
         <h1>Tuotelista</h1>
-        <p>Tässä näet listan myytävistä tuotteista</p>
-    <hr>
+        <p>Tässä alla näet listan myytävistä tuotteista</p>
+
         {% for product in products %}
+
+        <header>
             <h2>{{ product.name }}</h2>
-            <p style="border:2px solid rgb(143, 120, 101);">{{ product.description }}</p>
+        </header>
+
+    <section>
+        <nav>
+            <ul>
+                <a href="{% url 'product_details' product.id %}">Näytä tuote</a>
+            </ul>
+        </nav>
+
+        <article>
+            <p>{{ product.description }}</p>
             <p>{{ product.total_price }} ALV {{ product.tax }}%</p>
-            <a href="{% url 'product_details' product.id %}">Näytä tuote</a>
+        </article>
+    </section>
+
+        <footer>
+            <hr>
+        </footer>
+                
         {% endfor %}
         
     </body>
